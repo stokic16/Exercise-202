@@ -14,8 +14,12 @@ public class RadioGUI extends javax.swing.JFrame {
     /**
      * Creates new form RadioGUI
      */
+    private SenderTableModel model = new SenderTableModel();
     public RadioGUI() {
         initComponents();
+        tbRadio.setModel(model);
+        tbRadio.setComponentPopupMenu(jPopupMenu1);
+        model.add(new Sender("Oe3", 33.21, Sender.Band.AM));
     }
 
     /**
@@ -35,6 +39,11 @@ public class RadioGUI extends javax.swing.JFrame {
         tbRadio = new javax.swing.JTable();
 
         miHinzufügen.setText("Hinzufügen");
+        miHinzufügen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miHinzufügenActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miHinzufügen);
 
         miVerstecken.setText("Band verstecken");
@@ -63,6 +72,14 @@ public class RadioGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miHinzufügenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miHinzufügenActionPerformed
+        SenderDlg dialog = new SenderDlg(this, true);
+        dialog.setVisible(true);
+        if(dialog.isOk()){
+            model.add(dialog.getSender());
+        }
+    }//GEN-LAST:event_miHinzufügenActionPerformed
 
     /**
      * @param args the command line arguments
