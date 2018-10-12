@@ -11,7 +11,7 @@ public class Sender {
     private String name;
     private double frequenz;
     private Band band;
-    private enum Band{
+    enum Band{
         AM,FM;
     }
 

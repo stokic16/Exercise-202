@@ -14,6 +14,8 @@ public class SenderDlg extends javax.swing.JDialog {
     /**
      * Creates new form SenderDlg
      */
+    private boolean ok;
+    private Sender sender;
     public SenderDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -28,31 +30,79 @@ public class SenderDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout(4, 2));
+
+        jLabel1.setText("Sendername:");
+        getContentPane().add(jLabel1);
+        getContentPane().add(jTextField1);
+
+        jLabel2.setText("Frequenz:");
+        getContentPane().add(jLabel2);
+        getContentPane().add(jTextField2);
+
+        jLabel3.setText("Band:");
+        getContentPane().add(jLabel3);
+        getContentPane().add(jTextField3);
+
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ok=false;
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        sender=new Sender(jTextField1.getText(), Double.parseDouble(jTextField2.getText()),Band.AM);
+        
+        ok=true;
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    public Sender getSender() {
+        return sender;
+    }
+
+    public boolean isOk() {
+        return ok;
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -87,5 +137,13 @@ public class SenderDlg extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }
