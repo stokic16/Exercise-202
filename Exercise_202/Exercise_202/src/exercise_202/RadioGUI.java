@@ -18,6 +18,7 @@ public class RadioGUI extends javax.swing.JFrame {
     public RadioGUI() {
         initComponents();
         tbRadio.setModel(model);
+        tbRadio.setDefaultRenderer(Object.class, new SenderTableRenderer());
         tbRadio.setComponentPopupMenu(jPopupMenu1);
         model.add(new Sender("Oe3", 33.21, Sender.Band.AM));
     }
