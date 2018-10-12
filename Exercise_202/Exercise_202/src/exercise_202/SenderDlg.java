@@ -79,8 +79,7 @@ public class SenderDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sender=new Sender(jTextField1.getText(), Double.parseDouble(jTextField2.getText()),Band.AM);
-        
+        sender=new Sender(jTextField1.getText(), Double.parseDouble(jTextField2.getText()),Sender.Band.valueOf(jTextField3.getText()));
         ok=true;
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
