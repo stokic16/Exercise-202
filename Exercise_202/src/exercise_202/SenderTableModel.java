@@ -2,7 +2,14 @@
 
 package exercise_202;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -29,6 +36,35 @@ public class SenderTableModel extends AbstractTableModel{
         fireTableStructureChanged();
     }
 
+    public void save(File f) throws Exception{
+        FileOutputStream fos = new  FileOutputStream(f);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        for (Sender sender : senders) {
+            System.out.println("true");
+            oos.writeObject(sender);
+        }
+        oos.flush();
+        oos.close();
+        fos.flush();
+        fos.close();
+    }
+    
+    public void load(File f)throws Exception{
+        FileInputStream fis = new FileInputStream(f);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Object input=null;
+        try{
+            while((input=ois.readObject())!=null){
+                if(input instanceof Sender){
+                    senders.add((Sender)input);
+                }
+            }
+        }catch(EOFException e){
+            e.printStackTrace();
+        }
+        fis.close();
+        ois.close();
+    }
     @Override
     public int getRowCount() {
         return senders.size();

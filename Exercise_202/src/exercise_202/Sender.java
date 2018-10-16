@@ -2,10 +2,12 @@
 
 package exercise_202;
 
+import java.io.Serializable;
+
 /**
  * @author Kilian Stöckler
  */
-public class Sender {
+public class Sender implements Serializable{
 
     
     private String name;

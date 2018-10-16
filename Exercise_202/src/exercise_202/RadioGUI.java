@@ -5,6 +5,9 @@
  */
 package exercise_202;
 
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kilia
@@ -15,12 +18,18 @@ public class RadioGUI extends javax.swing.JFrame {
      * Creates new form RadioGUI
      */
     private SenderTableModel model = new SenderTableModel();
+    private File f = new File("./sender.ser");
     public RadioGUI() {
         initComponents();
         tbRadio.setModel(model);
         tbRadio.setDefaultRenderer(Object.class, new SenderTableRenderer());
         tbRadio.setComponentPopupMenu(jPopupMenu1);
         model.add(new Sender("Oe3", 33.21, Sender.Band.AM));
+        try{
+            model.load(f);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Couldn't load a file!");
+        }
     }
 
     /**
@@ -64,6 +73,11 @@ public class RadioGUI extends javax.swing.JFrame {
         jPopupMenu1.add(miAnzeigen);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         tbRadio.setModel(new javax.swing.table.DefaultTableModel(
@@ -99,6 +113,14 @@ public class RadioGUI extends javax.swing.JFrame {
     private void miAnzeigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAnzeigenActionPerformed
         model.showBand();
     }//GEN-LAST:event_miAnzeigenActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try{
+            model.save(f);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Couldn't save a file!\nSorry");
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
