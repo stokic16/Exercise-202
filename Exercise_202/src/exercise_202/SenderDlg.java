@@ -53,7 +53,7 @@ public class SenderDlg extends javax.swing.JDialog {
         getContentPane().add(jLabel2);
         getContentPane().add(jTextField2);
 
-        jLabel3.setText("Band:");
+        jLabel3.setText("Band AM/FM:");
         getContentPane().add(jLabel3);
         getContentPane().add(jTextField3);
 
@@ -82,19 +82,20 @@ public class SenderDlg extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        double in =-1;
-        try{
+        double in = -1;
+        try {
             in = Double.parseDouble(jTextField2.getText());
-        }catch(Exception e){
+            if (in > 0 && in < 1000) {
+                sender = new Sender(jTextField1.getText(), in, Sender.Band.valueOf(jTextField3.getText()));
+                ok = true;
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Enter a valid frequenz between 0 and 1000!");
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Enter the frequenz with '.' and not a ',' !");
         }
-        if (in > 0 && in < 1000) {
-            sender = new Sender(jTextField1.getText(), in, Sender.Band.valueOf(jTextField3.getText()));
-            ok = true;
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "Enter a valid frequenz between 0 and 1000!");
-        }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
