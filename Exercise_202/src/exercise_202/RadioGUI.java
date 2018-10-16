@@ -48,9 +48,19 @@ public class RadioGUI extends javax.swing.JFrame {
         jPopupMenu1.add(miHinzufügen);
 
         miVerstecken.setText("Band verstecken");
+        miVerstecken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miVersteckenActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miVerstecken);
 
         miAnzeigen.setText("Band anzeigen");
+        miAnzeigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAnzeigenActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(miAnzeigen);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,6 +91,14 @@ public class RadioGUI extends javax.swing.JFrame {
             model.add(dialog.getSender());
         }
     }//GEN-LAST:event_miHinzufügenActionPerformed
+
+    private void miVersteckenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miVersteckenActionPerformed
+        model.hideBand();
+    }//GEN-LAST:event_miVersteckenActionPerformed
+
+    private void miAnzeigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAnzeigenActionPerformed
+        model.showBand();
+    }//GEN-LAST:event_miAnzeigenActionPerformed
 
     /**
      * @param args the command line arguments

@@ -20,11 +20,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Band verstecken"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miVersteckenActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="miAnzeigen">
           <Properties>
             <Property name="text" type="java.lang.String" value="Band anzeigen"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miAnzeigenActionPerformed"/>
+          </Events>
         </MenuItem>
       </SubComponents>
     </Container>

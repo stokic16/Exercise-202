@@ -18,12 +18,14 @@ public class SenderTableModel extends AbstractTableModel{
         fireTableRowsInserted(senders.size()-1, senders.size()-1);
     }
     
-    public void changeBand(){
-        if(names.length==3){
-            names =new String[] {"Sender","Frequenz"};
-        }else{
-            names =new String[] {"Sender","Frequenz","Band"};
-        }
+
+    public void hideBand(){
+        names = new String[] {"Sender","Frequenz"};
+        fireTableStructureChanged();
+    }
+    
+    public void showBand(){
+        names = new String[] {"Sender","Frequenz","Band"};
         fireTableStructureChanged();
     }
 
