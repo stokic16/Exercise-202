@@ -5,6 +5,8 @@
  */
 package exercise_202;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kilia
@@ -16,6 +18,7 @@ public class SenderDlg extends javax.swing.JDialog {
      */
     private boolean ok;
     private Sender sender;
+
     public SenderDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -74,20 +77,30 @@ public class SenderDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ok=false;
+        ok = false;
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        sender=new Sender(jTextField1.getText(), Double.parseDouble(jTextField2.getText()),Sender.Band.valueOf(jTextField3.getText()));
-        ok=true;
-        this.dispose();
+        double in =-1;
+        try{
+            in = Double.parseDouble(jTextField2.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Enter the frequenz with '.' and not a ',' !");
+        }
+        if (in > 0 && in < 1000) {
+            sender = new Sender(jTextField1.getText(), in, Sender.Band.valueOf(jTextField3.getText()));
+            ok = true;
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Enter a valid frequenz between 0 and 1000!");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
     public Sender getSender() {
         return sender;
     }
@@ -101,7 +114,7 @@ public class SenderDlg extends javax.swing.JDialog {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-        */
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
