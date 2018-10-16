@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -22,6 +21,7 @@ public class SenderTableModel extends AbstractTableModel{
     
     public void add(Sender s){
         senders.add(s);
+        senders.sort(new CompareToFrequenz());
         fireTableRowsInserted(senders.size()-1, senders.size()-1);
     }
     
